@@ -131,9 +131,9 @@ class AuthShop
         if ($shopDomainSession) {
             return ShopifyApp::sanitizeShopDomain($shopDomainSession);
         }
-
+		return false;
         // No domain :(
-        throw new MissingShopDomainException('Unable to get shop domain.');
+        //throw new MissingShopDomainException('Unable to get shop domain.');
     }
 
     /**
