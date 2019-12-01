@@ -26,9 +26,10 @@ trait WebhookControllerTrait
 
         $jobClass::dispatch(
             Request::header('x-shopify-shop-domain'),
-            $jobData
+            $jobData,
+            Request::header('x-shopify-topic')
         );
 
-        return Response::make('', 201);
+        return Response::make('', 200);
     }
 }
