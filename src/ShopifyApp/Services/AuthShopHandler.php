@@ -181,7 +181,7 @@ class AuthShopHandler
             $job = $config['job'];
             if (isset($config['inline']) && $config['inline'] === true) {
                 // Run this job immediately
-                $job::dispatchNow($this->shop);
+                $job::dispatchSync($this->shop);
             } else {
                 // Run later
                 $job::dispatch($this->shop)
