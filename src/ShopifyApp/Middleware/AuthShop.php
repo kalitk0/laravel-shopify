@@ -18,7 +18,7 @@ use OhMyBrew\ShopifyApp\Services\ShopSession;
  * Response for ensuring an authenticated shop.
  */
 class AuthShop
-{
+{ 
     /**
      * Handle an incoming request.
      *
@@ -158,26 +158,10 @@ class AuthShop
         }
 
         // Always
-        $signature = $request->input('hmac');
-        $timestamp = $request->input('timestamp');
+       
 
-        $verify = [
-            'shop'      => $shop,
-            'hmac'      => $signature,
-            'timestamp' => $timestamp,
-        ];
-
-        // Sometimes
-        $code = $request->input('code') ?? null;
-        $locale = $request->input('locale') ?? null;
-        $state = $request->input('state') ?? null;
-        $id = $request->input('id') ?? null;
-        $ids = $request->input('ids') ?? null;
-
-        foreach (compact('code', 'locale', 'state', 'id', 'ids') as $key => $value) {
-            if ($value) {
-                $verify[$key] = is_array($value) ? '["'.implode('", "', $value).'"]' : $value;
-            }
+        foreach ($request->all() as $key => $value) {
+            $verify[$key] = is_array($value) ? '["'.implode('", "', $value).'"]' : $value;
         }
 
         // Make sure there is no param spoofing attempt
