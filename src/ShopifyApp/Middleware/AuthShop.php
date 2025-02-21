@@ -54,8 +54,7 @@ class AuthShop
 
         // Get the shop based on domain and update the session service
         $shopModel = Config::get('shopify-app.shop_model');
-        $shop = $shopModel::withTrashed()
-            ->where(['shopify_domain' => $shopDomain])
+        $shop = $shopModel::where(['shopify_domain' => $shopDomain])
             ->first();
         $session->setShop($shop);
 
